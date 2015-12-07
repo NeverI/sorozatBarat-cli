@@ -1,0 +1,19 @@
+{
+  "name": "sorozat-barat",
+  "version": "0.0.1",
+  "description": "List my series which has unseen episode",
+  "main": "index.ls",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "neveri",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^0.19.0",
+    "querystring": "^0.2.0",
+    "request": "^2.67.0"
+  },
+  "devDependencies": {
+    "longjohn": "^0.2.11"
+  }
+}
