@@ -1,15 +1,12 @@
-require! 'request'
-auth = require './auth.json'
-auth['redirect'] = '/'
-auth['loginsubmit'] = true
+require \livescript
+require! \./src/site
 
-url = 'http://www.sorozat-barat.info'
+require(\./src/requestCache) .wrap site
 
-request = request.defaults jar: true
-request.post do
-  uri: "#{url}/login"
-  body: require('querystring').stringify(auth)
-  headers: 'content-type': 'application/x-www-form-urlencoded'
-  , (err, res, body) ->
-    return console.log err if err
-    require('./src/collectUnseenEpisodes') url, request
+site
+  .login \http://www.sorozat-barat.info
+  .then ->
+    console.log \buu
+    require \./src/watchlist .series!
+  .catch (err) ->
+    console.log if err.stack then err.stack else err
