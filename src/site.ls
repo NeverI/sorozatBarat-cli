@@ -8,14 +8,14 @@ export login = (url) ->
   siteUrl := url
   loggedInRequest := request.defaults jar: true
 
-  require! '../auth.json'
+  require! '../config.json'
   auth[\redirect] = '/'
   auth[\loginsubmit] = true
 
   new Promise (resolve, reject) ->
     loggedInRequest.post do
       uri: "#{url}/login"
-      body: querystring.stringify auth
+      body: querystring.stringify config.auth
       headers: 'content-type': 'application/x-www-form-urlencoded'
       , handleResponse resolve, reject
 

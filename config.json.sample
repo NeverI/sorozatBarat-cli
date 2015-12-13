@@ -1,0 +1,17 @@
+{
+  "auth": {
+    "password": "JELSZÓ",
+    "login": "FELHASZNALÓNÉV"
+  },
+  // a preferált nyelvek listája
+  // ha nem talál feliratosat akkor angolul keres majd magyarul
+  "languages": ["feliratos", "en", "hu"],
+  // ezen oldalakat részesíti előnyben, ebben a sorrendbe
+  // ha nem talál egyet sem akkor a legtöbbet nézetett indítja
+  "uploads": [
+    "indavideo.hu",
+    "youwatch.org",
+    "flashx.tv",
+    "vidto.me"
+  ]
+}
