@@ -1,4 +1,5 @@
 require! \rx
+require! \./model/series
 require! \./model/watchlist
 
 export only-started = ->
@@ -13,6 +14,7 @@ export only-started = ->
 interested-series = (predicate) ->
   watchlist
     .get-series!
+    .flatMap -> series.load it if not it.seasons
     .flatMap (aSeries) ->
       aSeries
         .seasons

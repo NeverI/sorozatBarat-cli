@@ -1,7 +1,6 @@
 require! \rx
 require! \../site
 require! \cheerio
-require! './series': seriesModule
 
 series = undefined
 
@@ -21,4 +20,4 @@ export get-series = ->
 
       series.on-completed!
 
-  return series.flatMap -> seriesModule.load it
+  return series
