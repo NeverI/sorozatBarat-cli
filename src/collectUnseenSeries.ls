@@ -4,13 +4,11 @@ require! \./model/watchlist
 export only-started = ->
   interested-series -> it.watched and it.watched isnt it.total
     .toArray!
-    .subscribe do
-      ->
-        it.sort ((a, b) -> (a.total - a.watched) - (b.total - b.watched))
-          ..map ->
-            console.log "#{it.title}: #{it.watched}/#{it.total}"
-      , ->
-        console.log if it.stack then it.stack else it
+    .toPromise!
+    .then ->
+      it.sort ((a, b) -> (a.total - a.watched) - (b.total - b.watched))
+        ..map ->
+          console.log "#{it.title}: #{it.watched}/#{it.total}"
 
 interested-series = (predicate) ->
   watchlist
@@ -30,10 +28,8 @@ interested-series = (predicate) ->
 export only-new = ->
   interested-series -> not it.watched
     .toArray!
-    .subscribe do
-      ->
-        it.sort ((a, b) -> a.total - b.total)
-          ..map ->
-            console.log "#{it.title}: #{it.total}"
-      , ->
-        console.log if it.stack then it.stack else it
+    .toPromise!
+    .then ->
+      it.sort ((a, b) -> a.total - b.total)
+        ..map ->
+          console.log "#{it.title}: #{it.total}"
