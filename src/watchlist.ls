@@ -19,6 +19,6 @@ export get-series = ->
           uri: item.attribs.href
           title: $ item .text!
 
-      series.on-completed!
-
-  return series.flatMap -> seriesModule.load it
+  return series
+    .flatMap -> seriesModule.load it
+    .do -> series.on-completed!
