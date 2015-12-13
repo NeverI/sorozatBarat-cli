@@ -1,5 +1,5 @@
 require! \rx
-require! \./site
+require! \../site
 require! \cheerio
 require! './series': seriesModule
 
@@ -8,7 +8,7 @@ series = undefined
 export get-series = ->
   return series if series
 
-  series = new rx.ReplaySubject()
+  series := new rx.ReplaySubject()
 
   site
     .get \/notification
@@ -19,6 +19,6 @@ export get-series = ->
           uri: item.attribs.href
           title: $ item .text!
 
-  return series
-    .flatMap -> seriesModule.load it
-    .do -> series.on-completed!
+      series.on-completed!
+
+  return series.flatMap -> seriesModule.load it

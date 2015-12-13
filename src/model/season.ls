@@ -1,5 +1,5 @@
 require! \rx
-require! \./site
+require! \../site
 require! \cheerio
 
 export load = (season) ->

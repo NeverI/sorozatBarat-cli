@@ -1,5 +1,5 @@
 require! \rx
-require! \./watchlist
+require! \./model/watchlist
 
 export only-started = ->
   interested-series -> it.watched and it.watched isnt it.total
