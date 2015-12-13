@@ -3,25 +3,25 @@ require! \./site
 require! \cheerio
 require! \./season
 
-export load = (seria) ->
+export load = (aSeries) ->
   site
-    .get seria.uri
+    .get aSeries.uri
     .then (body) ->
       $ = cheerio.load body
-      seria.seasons = parse-seasons $ if not seria.seasons
+      aSeries.seasons = parse-seasons $ if not aSeries.seasons
 
       activeSeasonUri = $ '.seasons .active a' .attr \href
-      seria
+      aSeries
         .seasons
         .filter -> it.uri is activeSeasonUri
         .do -> season.parse it, $
         .subscribe!
 
-      return seria
+      return aSeries
 
 parse-seasons = ($) ->
   rx.Observable
-    .from $('.seasons a').map (i, elem) ->
-      uri: elem.attribs.href
-      title: $ elem .text!
+    .from $('.seasons a').map (i, item) ->
+      uri: item.attribs.href
+      title: $ item .text!
 

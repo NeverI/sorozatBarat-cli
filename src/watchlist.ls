@@ -1,7 +1,7 @@
 require! \rx
 require! \./site
-require! \./seria
 require! \cheerio
+require! './series': seriesModule
 
 series = undefined
 
@@ -14,11 +14,11 @@ export get-series = ->
     .get \/notification
     .then (body) ->
       $ = cheerio.load body
-      $ '.series .title a' .each (i, elem) ->
+      $ '.series .title a' .each (i, item) ->
         series.on-next do
-          uri: elem.attribs.href
-          title: elem.children.0.data
+          uri: item.attribs.href
+          title: $ item .text!
 
       series.on-completed!
 
-  return series.flatMap -> seria.load it
+  return series.flatMap -> seriesModule.load it
