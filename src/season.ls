@@ -17,7 +17,7 @@ export parse = (season, $) ->
     rx.Observable.from $ '.episodes .watched'
   .map ([episodeData, watchedData]) ->
     episodeData = $ episodeData
-    uri: episodeData.attr \herf
+    uri: episodeData.attr \href
     title: episodeData.text!
     watched: $(watchedData).hasClass \active
 
