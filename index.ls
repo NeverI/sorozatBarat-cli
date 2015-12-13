@@ -5,6 +5,6 @@ require(\./src/requestCache) .wrap site
 site
   .login \http://www.sorozat-barat.info
   .then ->
-    require \./src/collectUnseenEpisodes .only-started!
+    require \./src/collectUnseenSeries .only-started!
   .catch (err) ->
     console.log if err.stack then err.stack else err
